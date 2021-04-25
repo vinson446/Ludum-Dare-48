@@ -5,6 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Player Settings")]
+    [SerializeField] int currentHP;
+    public int CurrentHP { get => currentHP; set => currentHP = value; }
+
+    [Header("Movement Settings")]
     [SerializeField] float currentSpeed;
     [SerializeField] float speed = 12f;
     [SerializeField] float jumpHeight = 3f;
@@ -18,6 +22,7 @@ public class Player : MonoBehaviour
     [Header("References")]
     [SerializeField] CharacterController charController;
     [SerializeField] Transform groundCheck;
+    [SerializeField] UIManager uiManager;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +36,7 @@ public class Player : MonoBehaviour
         Movement();
     }
 
-    private void Movement()
+    void Movement()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
@@ -64,5 +69,21 @@ public class Player : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         charController.Move(velocity * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Obstacle")
+        {
+            TakeDamage();
+        }
+    }
+
+    void TakeDamage()
+    {
+        currentHP--;
+        uiManager.TakeDamage(currentHP);
+
+        print("Take Damage, Current HP: " + currentHP);
     }
 }
