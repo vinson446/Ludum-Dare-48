@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     [SerializeField] CharacterController charController;
     [SerializeField] Transform groundCheck;
     [SerializeField] UIManager uiManager;
+    [SerializeField] FPSCamera camManager;
 
     // Start is called before the first frame update
     void Start()
@@ -83,6 +84,7 @@ public class Player : MonoBehaviour
     {
         currentHP--;
         uiManager.TakeDamage(currentHP);
+        camManager.CameraShake();
 
         print("Take Damage, Current HP: " + currentHP);
     }

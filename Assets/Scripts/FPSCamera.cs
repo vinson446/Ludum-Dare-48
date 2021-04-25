@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class FPSCamera : MonoBehaviour
 {
@@ -8,8 +9,13 @@ public class FPSCamera : MonoBehaviour
     [SerializeField] bool playerInput;
     [SerializeField] float mouseSensitivity = 100f;
 
-    [Header("Cam Locks")]
-    [SerializeField] float introGameCamLock;
+    [Header("Camera Shake")]
+    [SerializeField] float swayIntensity;
+    [SerializeField] float swayRoughness;
+
+    [SerializeField] float onHitShakeIntensity;
+    [SerializeField] float onHitShakeRoughness;
+    [SerializeField] float onHitFadeOutTime;
 
     [Header("IR")]
     [SerializeField] Transform playerBody;
@@ -20,6 +26,8 @@ public class FPSCamera : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+
+        CameraShaker.Instance.StartShake(swayIntensity, swayRoughness, 0.1f);
     }
 
     // Update is called once per frame
@@ -42,5 +50,10 @@ public class FPSCamera : MonoBehaviour
 
         // player horizontal rotation
         playerBody.Rotate(Vector3.up * mouseX);
+    }
+
+    public void CameraShake()
+    {
+        CameraShaker.Instance.ShakeOnce(onHitShakeIntensity, onHitShakeRoughness, 0.1f, onHitFadeOutTime);
     }
 }
