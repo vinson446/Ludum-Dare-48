@@ -47,5 +47,10 @@ public class GameManager : MonoBehaviour
             UIManager uiManager = FindObjectOfType<UIManager>();
             uiManager.ResetHealth();
         }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Player player = FindObjectOfType<Player>();
+            player.Die();
+        }
     }
 }

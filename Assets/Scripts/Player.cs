@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     [SerializeField] float shiftFallSpeed;
     [SerializeField] float moveTransitionDuration;
     [SerializeField] float jumpHeight = 3f;
+    [SerializeField] float fallingJumpHeight;
     [SerializeField] float gravity = -9.81f;
     [SerializeField] float groundDistance = 0.4f;
     [SerializeField] LayerMask groundMask;
@@ -35,9 +36,9 @@ public class Player : MonoBehaviour
     bool inTransition;
 
     [Header("References")]
-    [SerializeField] Transform respawnPoint;
+    public Transform respawnPoint;
     [SerializeField] CharacterController charController;
-    [SerializeField] Rigidbody rb;
+    public Rigidbody rb;
     [SerializeField] Transform groundCheck;
     [SerializeField] UIManager uiManager;
     [SerializeField] FPSCamera camManager;
@@ -50,13 +51,13 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Movement();
+        if (!isDead)
+            Movement();
     }
 
     private void FixedUpdate()
     {
-        if (!isDead)
-            rb.MovePosition(rb.position + inputs * currentSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + inputs * currentSpeed * Time.fixedDeltaTime);
     }
 
     void Movement()
@@ -88,7 +89,10 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+            if (!isFalling)
+                rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+            else
+                rb.AddForce(Vector3.up * Mathf.Sqrt(fallingJumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
         } 
     }
 
@@ -151,7 +155,7 @@ public class Player : MonoBehaviour
         }
         else if (other.gameObject.tag == "EndTrigger")
         {
-            uiManager.EndGameFade(1);
+            uiManager.EndGameFade(2);
         }
     }
 
@@ -195,7 +199,7 @@ public class Player : MonoBehaviour
         uiManager.TakeDamage(currentHP);
 
         // TODO ADD CAMERA FLASH HERE
-
+        Die();
         if (currentHP <= 0)
         {
             print("Death");
@@ -203,13 +207,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
-        uiManager.DeathFade(deathDuration, respawnDuration);
-    }
-
-    public void Respawn()
-    {
-        transform.position = respawnPoint.position;
+        if (!isDead)
+            uiManager.DeathFade(deathDuration, respawnDuration);
     }
 }

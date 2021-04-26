@@ -47,7 +47,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartGameFade(1);
+        StartGameFade(2);
         if (SceneManager.GetActiveScene().buildIndex == 1)
             StartCoroutine(StartingGameDialogueCoroutine());
         if (SceneManager.GetActiveScene().buildIndex == 2)
@@ -67,14 +67,14 @@ public class UIManager : MonoBehaviour
 
     public void EndGameFade(float duration)
     {
-        fadeImage.DOFade(1, duration);
+        StartCoroutine(EndGameFadeCoroutine(duration));
     }
 
     IEnumerator EndGameFadeCoroutine(float duration)
     {
         fadeImage.DOFade(1, duration);
 
-        yield return new WaitForSeconds(duration + 1);
+        yield return new WaitForSeconds(duration + 2);
 
         GameManager.instance.ChangeScenes(2);
     }
@@ -142,11 +142,19 @@ public class UIManager : MonoBehaviour
         fadeImage.DOFade(1, deathDuration);
         player.isDead = true;
 
+        player.rb.velocity = Vector3.zero;
+        player.rb.angularVelocity = Vector3.zero;
+        player.rb.isKinematic = true;
+
         yield return new WaitForSeconds(deathDuration + 1);
 
         player.CurrentHP = filledHealthImages.Length;
         player.isFalling = false;
-        player.Respawn();
+
+        player.transform.position = player.respawnPoint.position;
+        player.transform.rotation = player.respawnPoint.rotation;
+
+        player.rb.isKinematic = false;
 
         ResetHealth();
 
@@ -195,6 +203,8 @@ public class UIManager : MonoBehaviour
         {
             i.gameObject.SetActive(false);
         }
+
+        yield return new WaitForSeconds(2);
 
         dialogueText.text = endDialogueSequence[0];
         dialogueText.DOFade(1, textFadeDuration);
