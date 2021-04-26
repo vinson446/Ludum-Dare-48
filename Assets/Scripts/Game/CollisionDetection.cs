@@ -32,26 +32,29 @@ public class CollisionDetection : MonoBehaviour
 	void FixedUpdate()
 	{
 		//have we moved more than our minimum extent? 
-		Vector3 movementThisStep = myRigidbody.position - previousPosition;
-		float movementSqrMagnitude = movementThisStep.sqrMagnitude;
+		if (myRigidbody != null)
+        {
+			Vector3 movementThisStep = myRigidbody.position - previousPosition;
+			float movementSqrMagnitude = movementThisStep.sqrMagnitude;
 
-		if (movementSqrMagnitude > sqrMinimumExtent)
-		{
-			float movementMagnitude = Mathf.Sqrt(movementSqrMagnitude);
-			RaycastHit hitInfo;
-
-			//check for obstructions we might have missed 
-			if (Physics.Raycast(previousPosition, movementThisStep, out hitInfo, movementMagnitude, layerMask.value))
+			if (movementSqrMagnitude > sqrMinimumExtent)
 			{
-				if (!hitInfo.collider)
-					return;
+				float movementMagnitude = Mathf.Sqrt(movementSqrMagnitude);
+				RaycastHit hitInfo;
 
-				if (!hitInfo.collider.isTrigger)
-					myRigidbody.position = hitInfo.point - (movementThisStep / movementMagnitude) * partialExtent;
+				//check for obstructions we might have missed 
+				if (Physics.Raycast(previousPosition, movementThisStep, out hitInfo, movementMagnitude, layerMask.value))
+				{
+					if (!hitInfo.collider)
+						return;
 
+					if (!hitInfo.collider.isTrigger)
+						myRigidbody.position = hitInfo.point - (movementThisStep / movementMagnitude) * partialExtent;
+
+				}
 			}
-		}
 
-		previousPosition = myRigidbody.position;
+			previousPosition = myRigidbody.position;
+		}
 	}
 }

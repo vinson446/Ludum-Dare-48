@@ -31,7 +31,6 @@ public class Player : MonoBehaviour
     Vector3 velocity;
     public bool isGrounded;
     public bool isFalling;
-    public bool isDead;
     bool hasFallenAlready;
     bool inTransition;
 
@@ -51,13 +50,14 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (!isDead)
+        if (!GameManager.instance.isDead)
             Movement();
     }
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + inputs * currentSpeed * Time.fixedDeltaTime);
+        if (!GameManager.instance.isDead)
+            rb.MovePosition(rb.position + inputs * currentSpeed * Time.fixedDeltaTime);
     }
 
     void Movement()
@@ -200,6 +200,7 @@ public class Player : MonoBehaviour
 
         // TODO ADD CAMERA FLASH HERE
         Die();
+
         if (currentHP <= 0)
         {
             print("Death");
@@ -209,7 +210,10 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        if (!isDead)
+        if (!GameManager.instance.isDead)
+        {
+            GameManager.instance.isDead = true;
             uiManager.DeathFade(deathDuration, respawnDuration);
+        }
     }
 }

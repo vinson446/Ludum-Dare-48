@@ -24,7 +24,6 @@ public class UIManager : MonoBehaviour
     public bool hasFallen;
     [TextArea(0, 5)]
     [SerializeField] string[] deathDialogueSequence;
-    public int numDeaths;
     [TextArea(0, 5)]
     [SerializeField] string[] endDialogueSequence;
 
@@ -48,8 +47,14 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         StartGameFade(2);
+
         if (SceneManager.GetActiveScene().buildIndex == 1)
-            StartCoroutine(StartingGameDialogueCoroutine());
+        {
+            if (!GameManager.instance.isDead)
+                StartCoroutine(StartingGameDialogueCoroutine());
+            else
+                StartCoroutine(DeathDialogueCoroutine());
+        }
         if (SceneManager.GetActiveScene().buildIndex == 2)
             StartCoroutine(EndDialogueCoroutine());
     }
@@ -140,21 +145,28 @@ public class UIManager : MonoBehaviour
     IEnumerator DeathFadeCoroutine(float deathDuration, float respawnDuration)
     {
         fadeImage.DOFade(1, deathDuration);
-        player.isDead = true;
 
+        /*
         player.rb.velocity = Vector3.zero;
         player.rb.angularVelocity = Vector3.zero;
-        player.rb.isKinematic = true;
+        player.rb.useGravity = false;
+        */
 
         yield return new WaitForSeconds(deathDuration + 1);
 
+        SceneManager.LoadScene(1);
+
+        /*
         player.CurrentHP = filledHealthImages.Length;
         player.isFalling = false;
 
+
         player.transform.position = player.respawnPoint.position;
         player.transform.rotation = player.respawnPoint.rotation;
+        player.rb.useGravity = true;
 
-        player.rb.isKinematic = false;
+        // player.rb.MovePosition(player.respawnPoint.position);
+        // player.rb.MoveRotation(player.respawnPoint.rotation);
 
         ResetHealth();
 
@@ -165,7 +177,9 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(respawnDuration);
 
         DeathDialogue();
-        player.isDead = false;
+        GameManager.instance.isDead = false;
+        */
+
     }
 
     // for GameManager's testing controls
@@ -188,13 +202,15 @@ public class UIManager : MonoBehaviour
 
     IEnumerator DeathDialogueCoroutine()
     {
-        dialogueText.text = deathDialogueSequence[numDeaths];
+        GameManager.instance.isDead = false;
+
+        dialogueText.text = deathDialogueSequence[GameManager.instance.numDeaths];
         dialogueText.DOFade(1, 0);
 
         yield return new WaitForSeconds(textFadeDuration);
 
         dialogueText.DOFade(0, textFadeDuration);
-        numDeaths++;
+        GameManager.instance.numDeaths++;
     }
 
     IEnumerator EndDialogueCoroutine()

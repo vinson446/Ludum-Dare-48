@@ -14,6 +14,7 @@ public class MenuManager : MonoBehaviour
 
     [Header("IR")]
     [SerializeField] Image fadeImage;
+    [SerializeField] AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()

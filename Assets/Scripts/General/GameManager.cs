@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public int numDeaths;
+    public bool isDead;
+
     private void Awake()
     {
         if (instance == null)
