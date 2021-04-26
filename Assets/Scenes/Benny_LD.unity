@@ -1168,6 +1168,7 @@ Transform:
   - {fileID: 2100954701}
   - {fileID: 78896578}
   - {fileID: 806985855}
+  - {fileID: 1497027963}
   m_Father: {fileID: 144478241}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3046,7 +3047,8 @@ MonoBehaviour:
   _object: {fileID: 1049152197}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!1001 &80191262
@@ -4593,7 +4595,8 @@ MonoBehaviour:
   _object: {fileID: 431644521}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!1001 &123784779
@@ -4833,7 +4836,8 @@ MonoBehaviour:
   _object: {fileID: 64347438}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!1001 &136939101
@@ -7581,7 +7585,8 @@ MonoBehaviour:
   _object: {fileID: 1458584628}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!1001 &195306655
@@ -15985,7 +15990,8 @@ MonoBehaviour:
   _object: {fileID: 587742050}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!1001 &427176622
@@ -18643,7 +18649,8 @@ MonoBehaviour:
   _object: {fileID: 2078985554}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!4 &501599874 stripped
@@ -24611,7 +24618,8 @@ MonoBehaviour:
   _object: {fileID: 991978590}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!4 &637633991 stripped
@@ -24906,7 +24914,8 @@ MonoBehaviour:
   _object: {fileID: 691479300}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!4 &647166270 stripped
@@ -28160,8 +28169,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -28778,7 +28787,8 @@ MonoBehaviour:
   _object: {fileID: 1568548432}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!1001 &741560697
@@ -31146,7 +31156,8 @@ MonoBehaviour:
   _object: {fileID: 35697098}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!1001 &808449200
@@ -34884,7 +34895,8 @@ MonoBehaviour:
   _object: {fileID: 1308486415}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!1 &877468472
@@ -37426,7 +37438,8 @@ MonoBehaviour:
   _object: {fileID: 1617272304}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!4 &943036087 stripped
@@ -46686,7 +46699,8 @@ MonoBehaviour:
   _object: {fileID: 953870094}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!1 &1180333833
@@ -47317,7 +47331,8 @@ MonoBehaviour:
   _object: {fileID: 1799846217}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!4 &1193789279 stripped
@@ -48150,7 +48165,8 @@ MonoBehaviour:
   _object: {fileID: 610684589}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!4 &1216173683 stripped
@@ -51222,7 +51238,8 @@ MonoBehaviour:
   _object: {fileID: 1417981714}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!4 &1276196429 stripped
@@ -54122,7 +54139,8 @@ MonoBehaviour:
   _object: {fileID: 531783845}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!4 &1338687250 stripped
@@ -56570,7 +56588,8 @@ MonoBehaviour:
   _object: {fileID: 1582729878}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!4 &1391824264 stripped
@@ -61087,6 +61106,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b97b4b2d0ecb31c44b3f479d074aa7f3, type: 3}
+--- !u!1 &1497027962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1497027963}
+  m_Layer: 10
+  m_Name: waypoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1497027963
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497027962}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 29245725}
+  m_RootOrder: 37
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1497461766
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78332,7 +78381,8 @@ MonoBehaviour:
   _object: {fileID: 106327764}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!1001 &1936601885
@@ -79501,7 +79551,8 @@ MonoBehaviour:
   _object: {fileID: 2021454562}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!4 &1969325244 stripped
@@ -82615,7 +82666,8 @@ MonoBehaviour:
   _object: {fileID: 1469620839}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!4 &2037905038 stripped
@@ -84071,7 +84123,8 @@ MonoBehaviour:
   _object: {fileID: 1373821171}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!1001 &2062517187
@@ -85536,7 +85589,8 @@ MonoBehaviour:
   _object: {fileID: 42833038}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!1001 &2102626416
@@ -85921,7 +85975,8 @@ MonoBehaviour:
   _object: {fileID: 1487831051}
   _rotationAngles: {x: 0, y: 5, z: 0}
   _rotationSpeed: 25
-  _waypoints: []
+  _waypoints:
+  - {fileID: 1497027963}
   _moveSpeed: 0
   Setting: 0
 --- !u!1001 &2120758283
