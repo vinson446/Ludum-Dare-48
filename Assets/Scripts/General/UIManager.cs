@@ -251,5 +251,9 @@ public class UIManager : MonoBehaviour
         dialogueText.DOFade(1, textFadeDuration);
 
         endAnimator.CrossFadeInFixedTime("WakeUp", 0.25f);
+
+        yield return new WaitForSeconds(11);
+
+        SceneManager.LoadScene(3);
     }
 }

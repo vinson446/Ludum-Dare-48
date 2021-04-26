@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    [SerializeField] AudioSource gameManagerAudioSource;
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip bgm;
     [SerializeField] AudioClip[] clips;
@@ -17,6 +16,7 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
         GameManager.instance.audioSource.clip = bgm;
+        GameManager.instance.audioSource.Play();
     }
 
     // Update is called once per frame

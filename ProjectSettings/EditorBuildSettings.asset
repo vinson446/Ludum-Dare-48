@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Thuan_alley.unity
     guid: 6f538b48b4a0e6c4288afdd9664bb2ed
+  - enabled: 1
+    path: Assets/Scenes/End.unity
+    guid: ded50c742023ef74dbc91b444af02579
   m_configObjects: {}
