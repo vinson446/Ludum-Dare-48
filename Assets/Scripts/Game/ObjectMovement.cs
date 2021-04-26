@@ -31,9 +31,14 @@ public class ObjectMovement : MonoBehaviour
     private Coroutine _movementRoutine = null;
     private bool loopDireciton = true;
 
+    private void Start()
+    {
+        _movementRoutine = StartCoroutine(MoveToWaypoint(0));
+    }
+
     private void Update()
     {
-
+        _object.transform.Rotate(_rotationAngles * _rotationSpeed * Time.deltaTime);
 
     }
 
@@ -41,8 +46,8 @@ public class ObjectMovement : MonoBehaviour
     {
         if (isMoving)
         {
-            _movementRoutine = StartCoroutine(MoveToWaypoint(0));
-            _object.transform.Rotate(_rotationAngles * _rotationSpeed * Time.deltaTime);
+            
+           
         }
     }
 
