@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class UIManager : MonoBehaviour
     [TextArea(0, 5)]
     [SerializeField] string[] deathDialogueSequence;
     public int numDeaths;
+    [TextArea(0, 5)]
+    [SerializeField] string[] endDialogueSequence;
+
+    [Header("Dialogue Settings")]
     [SerializeField] float durationBtwnText;
     [SerializeField] float textDuration;
     [SerializeField] float textFadeDuration;
@@ -33,6 +38,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image[] filledHealthImages;
     [SerializeField] Sprite filledHealthSprite;
     [SerializeField] Sprite emptyHealthSprite;
+    [SerializeField] Animator endAnimator;
 
     [SerializeField] Player player;
     Coroutine deathCoroutine;
@@ -42,7 +48,10 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         StartGameFade(1);
-        StartCoroutine(StartingGameDialogueCoroutine());
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+            StartCoroutine(StartingGameDialogueCoroutine());
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+            StartCoroutine(EndDialogueCoroutine());
     }
 
     // Update is called once per frame
@@ -68,6 +77,46 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(duration + 1);
 
         GameManager.instance.ChangeScenes(2);
+    }
+
+    IEnumerator StartingGameDialogueCoroutine()
+    {
+        dialogueText.text = introDialogueSequence[0];
+        dialogueText.DOFade(1, textFadeDuration);
+
+        yield return new WaitForSeconds(textDuration + textFadeDuration);
+
+        dialogueText.DOFade(0, textFadeDuration);
+
+        yield return new WaitForSeconds(textFadeDuration);
+        yield return new WaitForSeconds(durationBtwnText);
+
+        dialogueText.text = introDialogueSequence[1];
+        dialogueText.DOFade(1, textFadeDuration);
+
+        yield return new WaitForSeconds(textDuration + textFadeDuration);
+
+        dialogueText.DOFade(0, textFadeDuration);
+    }
+
+    public void StartFallingDialogue()
+    {
+        if (!hasFallen)
+        {
+            StopAllCoroutines();
+            StartCoroutine(StartFallingDialogueCoroutine());
+            hasFallen = true;
+        }
+    }
+
+    IEnumerator StartFallingDialogueCoroutine()
+    {
+        dialogueText.text = fallingDialogueSequence[0];
+        dialogueText.DOFade(1, 0);
+
+        yield return new WaitForSeconds(textFadeDuration);
+
+        dialogueText.DOFade(0, textFadeDuration);
     }
 
     public void TakeDamage(int currentHP)
@@ -140,9 +189,14 @@ public class UIManager : MonoBehaviour
         numDeaths++;
     }
 
-    IEnumerator StartingGameDialogueCoroutine()
+    IEnumerator EndDialogueCoroutine()
     {
-        dialogueText.text = introDialogueSequence[0];
+        foreach (Image i in filledHealthImages)
+        {
+            i.gameObject.SetActive(false);
+        }
+
+        dialogueText.text = endDialogueSequence[0];
         dialogueText.DOFade(1, textFadeDuration);
 
         yield return new WaitForSeconds(textDuration + textFadeDuration);
@@ -152,31 +206,19 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(textFadeDuration);
         yield return new WaitForSeconds(durationBtwnText);
 
-        dialogueText.text = introDialogueSequence[1];
+        dialogueText.text = endDialogueSequence[1];
         dialogueText.DOFade(1, textFadeDuration);
 
         yield return new WaitForSeconds(textDuration + textFadeDuration);
 
         dialogueText.DOFade(0, textFadeDuration);
-    }
-
-    public void StartFallingDialogue()
-    {
-        if (!hasFallen)
-        {
-            StopAllCoroutines();
-            StartCoroutine(StartFallingDialogueCoroutine());
-            hasFallen = true;
-        }
-    }
-
-    IEnumerator StartFallingDialogueCoroutine()
-    {
-        dialogueText.text = fallingDialogueSequence[0];
-        dialogueText.DOFade(1, 0);
 
         yield return new WaitForSeconds(textFadeDuration);
+        yield return new WaitForSeconds(durationBtwnText);
 
-        dialogueText.DOFade(0, textFadeDuration);
+        dialogueText.text = endDialogueSequence[2];
+        dialogueText.DOFade(1, textFadeDuration);
+
+        endAnimator.CrossFadeInFixedTime("WakeUp", 0.25f);
     }
 }
