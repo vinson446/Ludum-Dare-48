@@ -7,7 +7,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public AudioSource audioSource;
+
     public int numDeaths;
+    public bool hasFallenAlready;
     public bool isDead;
 
     private void Awake()
@@ -43,14 +46,6 @@ public class GameManager : MonoBehaviour
     void GameTester()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Player player = FindObjectOfType<Player>();
-            player.CurrentHP = 3;
-
-            UIManager uiManager = FindObjectOfType<UIManager>();
-            uiManager.ResetHealth();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             Player player = FindObjectOfType<Player>();
             player.Die();

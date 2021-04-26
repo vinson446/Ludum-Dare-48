@@ -31,7 +31,6 @@ public class Player : MonoBehaviour
     Vector3 velocity;
     public bool isGrounded;
     public bool isFalling;
-    bool hasFallenAlready;
     bool inTransition;
 
     [Header("References")]
@@ -41,6 +40,7 @@ public class Player : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] UIManager uiManager;
     [SerializeField] FPSCamera camManager;
+    [SerializeField] SoundManager soundManager;
 
     // Start is called before the first frame update
     void Start()
@@ -144,10 +144,13 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "FallTrigger")
         {
             print("Falling");
-            if (!hasFallenAlready)
+            if (!GameManager.instance.hasFallenAlready)
             {
+                soundManager.SetVolume(0.5f);
+                soundManager.PlaySoundClip(0);
+
                 uiManager.StartFallingDialogue();
-                hasFallenAlready = true;
+                GameManager.instance.hasFallenAlready = true;
             }
 
             isFalling = true;
@@ -196,10 +199,12 @@ public class Player : MonoBehaviour
     void TakeDamage()
     {
         currentHP--;
+
+        soundManager.SetVolume(0.5f);
+        soundManager.PlayHurtClip();
         uiManager.TakeDamage(currentHP);
 
         // TODO ADD CAMERA FLASH HERE
-        Die();
 
         if (currentHP <= 0)
         {

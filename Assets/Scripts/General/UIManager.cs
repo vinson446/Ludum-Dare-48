@@ -40,6 +40,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Animator endAnimator;
 
     [SerializeField] Player player;
+    [SerializeField] SoundManager soundManager;
     Coroutine deathCoroutine;
     Coroutine deathDialogueCoroutine;
 
@@ -202,7 +203,11 @@ public class UIManager : MonoBehaviour
 
     IEnumerator DeathDialogueCoroutine()
     {
+        yield return new WaitForSeconds(1);
+
         GameManager.instance.isDead = false;
+        soundManager.SetVolume(0.5f);
+        soundManager.PlayDeathClip();
 
         dialogueText.text = deathDialogueSequence[GameManager.instance.numDeaths];
         dialogueText.DOFade(1, 0);
