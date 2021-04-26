@@ -8,6 +8,10 @@ public class Player : MonoBehaviour
     [SerializeField] int currentHP;
     public int CurrentHP { get => currentHP; set => currentHP = value; }
 
+    [Header("Death Settings")]
+    [SerializeField] float respawnDuration;
+    [SerializeField] float deathDuration;
+
     [Header("Movement Settings")]
     [SerializeField] float currentSpeed;
     [SerializeField] float speed = 12f;
@@ -20,6 +24,7 @@ public class Player : MonoBehaviour
     bool isGrounded;
 
     [Header("References")]
+    [SerializeField] Transform respawnPoint;
     [SerializeField] CharacterController charController;
     [SerializeField] Transform groundCheck;
     [SerializeField] UIManager uiManager;
@@ -78,6 +83,10 @@ public class Player : MonoBehaviour
         {
             TakeDamage();
         }
+        else if (other.gameObject.tag == "Lose")
+        {
+            Die();
+        }
     }
 
     void TakeDamage()
@@ -86,6 +95,19 @@ public class Player : MonoBehaviour
         uiManager.TakeDamage(currentHP);
         camManager.CameraShake();
 
-        print("Take Damage, Current HP: " + currentHP);
+        if (currentHP <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        uiManager.DeathFade(deathDuration, respawnDuration);
+    }
+
+    public void Respawn()
+    {
+        transform.position = respawnPoint.position;
     }
 }

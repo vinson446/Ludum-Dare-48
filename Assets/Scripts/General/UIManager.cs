@@ -27,11 +27,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] float durationBtwnText;
     [SerializeField] float textFadeDuration;
 
-
     [Header("IR")]
+    [SerializeField] Image fadeImage;
     [SerializeField] Image[] filledHealthImages;
     [SerializeField] Sprite filledHealthSprite;
     [SerializeField] Sprite emptyHealthSprite;
+
+    Player player;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +45,31 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void StartGameFade(float duration)
+    {
+        fadeImage.DOFade(0, duration);
+    }
+
+    public void DeathFade(float deathDuration, float respawnDuration)
+    {
+        StartCoroutine(DeathFadeCoroutine(deathDuration, respawnDuration));
+    }
+
+    IEnumerator DeathFadeCoroutine(float deathDuration, float respawnDuration)
+    {
+        fadeImage.DOFade(0, deathDuration);
+
+        yield return new WaitForSeconds(deathDuration);
+
+        player.CurrentHP = 3;
+        player.Respawn();
+        ResetHealth();
+
+        yield return new WaitForSeconds(2);
+
+        fadeImage.DOFade(1, respawnDuration);
     }
 
     public void TakeDamage(int currentHP)
