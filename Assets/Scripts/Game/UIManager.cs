@@ -14,6 +14,20 @@ public class UIManager : MonoBehaviour
     [SerializeField] float shakeRandomness;
     [SerializeField] bool shakeFadeOut;
 
+    [Header("Dialogue")]
+    [SerializeField] TextMeshProUGUI dialogueText;
+    [TextArea(0, 5)]
+    [SerializeField] string[] introDialogueSequence;
+    [TextArea(0, 5)]
+    [SerializeField] string[] fallingDialogueSequence;
+    public bool hasFallen;
+    [TextArea(0, 5)]
+    [SerializeField] string[] deathDialogueSequence;
+    public int numDeaths;
+    [SerializeField] float durationBtwnText;
+    [SerializeField] float textFadeDuration;
+
+
     [Header("IR")]
     [SerializeField] Image[] filledHealthImages;
     [SerializeField] Sprite filledHealthSprite;
@@ -22,7 +36,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(StartingGameDialogueCoroutine());
     }
 
     // Update is called once per frame
@@ -44,5 +58,71 @@ public class UIManager : MonoBehaviour
         {
             i.sprite = filledHealthSprite;
         }
+    }
+
+    IEnumerator StartingGameDialogueCoroutine()
+    {
+        dialogueText.text = introDialogueSequence[0];
+        dialogueText.DOFade(1, textFadeDuration);
+
+        yield return new WaitForSeconds(textFadeDuration);
+
+        dialogueText.DOFade(0, textFadeDuration);
+
+        yield return new WaitForSeconds(textFadeDuration);
+        yield return new WaitForSeconds(durationBtwnText);
+
+        dialogueText.text = introDialogueSequence[1];
+        dialogueText.DOFade(1, textFadeDuration);
+
+        yield return new WaitForSeconds(textFadeDuration);
+
+        dialogueText.DOFade(0, textFadeDuration);
+
+        yield return new WaitForSeconds(textFadeDuration);
+        yield return new WaitForSeconds(durationBtwnText);
+
+        dialogueText.text = introDialogueSequence[2];
+        dialogueText.DOFade(1, textFadeDuration);
+
+        yield return new WaitForSeconds(textFadeDuration);
+
+        dialogueText.DOFade(0, textFadeDuration);
+    }
+
+    public void StartFallingDialogue()
+    {
+        if (!hasFallen)
+        {
+            StopAllCoroutines();
+            StartCoroutine(StartFallingDialogueCoroutine());
+            hasFallen = true;
+        }
+    }
+
+    IEnumerator StartFallingDialogueCoroutine()
+    {
+        dialogueText.text = fallingDialogueSequence[0];
+        dialogueText.DOFade(1, 0);
+
+        yield return new WaitForSeconds(durationBtwnText);
+
+        dialogueText.DOFade(0, textFadeDuration);
+    }
+
+    public void DeathDialogue()
+    {
+        numDeaths++;
+        StartCoroutine(StartFallingDialogueCoroutine());
+    }
+
+    IEnumerator DeathDialogueCoroutine()
+    {
+        dialogueText.text = fallingDialogueSequence[numDeaths];
+        dialogueText.DOFade(1, 0);
+
+        yield return new WaitForSeconds(durationBtwnText);
+
+        dialogueText.DOFade(0, textFadeDuration);
     }
 }
