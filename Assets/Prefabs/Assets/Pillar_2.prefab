@@ -38,20 +38,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &6681151189445337838
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6512094285930383122}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3381418460083480227, guid: a21e5d74e3dc1004fb7824e0d98a2f30, type: 3}
 --- !u!1001 &582443783312822033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59,10 +45,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3848160373796683394}
     m_Modifications:
-    - target: {fileID: 3101464352450360899, guid: 219088d28413ea1408799edaea8b81f2, type: 3}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7842160245046663519, guid: 219088d28413ea1408799edaea8b81f2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -133,10 +115,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3848160373796683394}
     m_Modifications:
-    - target: {fileID: 3101464352450360899, guid: 219088d28413ea1408799edaea8b81f2, type: 3}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7842160245046663519, guid: 219088d28413ea1408799edaea8b81f2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -207,10 +185,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3848160373796683394}
     m_Modifications:
-    - target: {fileID: 3101464352450360899, guid: 219088d28413ea1408799edaea8b81f2, type: 3}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7842160245046663519, guid: 219088d28413ea1408799edaea8b81f2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -337,17 +311,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3101464352450360899, guid: 219088d28413ea1408799edaea8b81f2, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 219088d28413ea1408799edaea8b81f2, type: 3}
 --- !u!4 &6241692840997261060 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8869107813110722716, guid: 219088d28413ea1408799edaea8b81f2, type: 3}
-  m_PrefabInstance: {fileID: 3281879487291506584}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6512094285930383122 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8634543158683629706, guid: 219088d28413ea1408799edaea8b81f2, type: 3}
   m_PrefabInstance: {fileID: 3281879487291506584}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4765542241029046202
@@ -357,10 +325,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3848160373796683394}
     m_Modifications:
-    - target: {fileID: 3101464352450360899, guid: 219088d28413ea1408799edaea8b81f2, type: 3}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7842160245046663519, guid: 219088d28413ea1408799edaea8b81f2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -431,10 +395,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3848160373796683394}
     m_Modifications:
-    - target: {fileID: 3101464352450360899, guid: 219088d28413ea1408799edaea8b81f2, type: 3}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7842160245046663519, guid: 219088d28413ea1408799edaea8b81f2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -505,10 +465,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3848160373796683394}
     m_Modifications:
-    - target: {fileID: 3101464352450360899, guid: 219088d28413ea1408799edaea8b81f2, type: 3}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7842160245046663519, guid: 219088d28413ea1408799edaea8b81f2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -587,10 +543,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3848160373796683394}
     m_Modifications:
-    - target: {fileID: 3101464352450360899, guid: 219088d28413ea1408799edaea8b81f2, type: 3}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7842160245046663519, guid: 219088d28413ea1408799edaea8b81f2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
