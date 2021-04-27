@@ -21,7 +21,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] string[] introDialogueSequence;
     [TextArea(0, 5)]
     [SerializeField] string[] fallingDialogueSequence;
-    public bool hasFallen;
     [TextArea(0, 5)]
     [SerializeField] string[] deathDialogueSequence;
     [TextArea(0, 5)]
@@ -80,6 +79,15 @@ public class UIManager : MonoBehaviour
     {
         fadeImage.DOFade(1, duration);
 
+        float elapsed = 0;
+        float current = GameManager.instance.audioSource.volume;
+        while (elapsed < duration + 1)
+        {
+            GameManager.instance.audioSource.volume = Mathf.Lerp(current, 0, elapsed / (duration + 1));
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
         yield return new WaitForSeconds(duration + 2);
 
         GameManager.instance.ChangeScenes(2);
@@ -107,12 +115,10 @@ public class UIManager : MonoBehaviour
 
     public void StartFallingDialogue()
     {
-        if (!hasFallen)
-        {
-            StopAllCoroutines();
-            StartCoroutine(StartFallingDialogueCoroutine());
-            hasFallen = true;
-        }
+        StopAllCoroutines();
+        GameManager.instance.audioSource.clip = soundManager.bgm2;
+        GameManager.instance.audioSource.Play();
+        StartCoroutine(StartFallingDialogueCoroutine());
     }
 
     IEnumerator StartFallingDialogueCoroutine()
@@ -246,6 +252,8 @@ public class UIManager : MonoBehaviour
 
         yield return new WaitForSeconds(textFadeDuration);
         yield return new WaitForSeconds(durationBtwnText);
+
+        GameManager.instance.audioSource.volume = 0;
 
         dialogueText.text = endDialogueSequence[2];
         dialogueText.DOFade(1, textFadeDuration);

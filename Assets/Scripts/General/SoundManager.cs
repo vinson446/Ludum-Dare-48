@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip bgm;
+    public AudioClip bgm2;
     [SerializeField] AudioClip[] clips;
 
     [Header("In Game")]
@@ -15,6 +17,14 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+            GameManager.instance.audioSource.volume = 0.5f;
+        else
+            GameManager.instance.audioSource.volume = 0.2f;
+
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+            GameManager.instance.audioSource.volume = 0.05f;
+
         GameManager.instance.audioSource.clip = bgm;
         GameManager.instance.audioSource.Play();
     }
