@@ -153,6 +153,9 @@ public class Player : MonoBehaviour
                 GameManager.instance.hasFallenAlready = true;
             }
 
+            GameManager.instance.audioSource.clip = soundManager.bgm2;
+            GameManager.instance.audioSource.Play();
+
             isFalling = true;
             StartCoroutine(WalkToFallSpeedTransitonCoroutine());
         }
@@ -198,18 +201,21 @@ public class Player : MonoBehaviour
 
     void TakeDamage()
     {
-        currentHP--;
-
-        soundManager.SetVolume(0.5f);
-        soundManager.PlayHurtClip();
-        uiManager.TakeDamage(currentHP);
-
-        // TODO ADD CAMERA FLASH HERE
-
-        if (currentHP <= 0)
+        if (!GameManager.instance.isDead)
         {
-            print("Death");
-            Die();
+            currentHP--;
+
+            soundManager.SetVolume(0.5f);
+            soundManager.PlayHurtClip();
+            uiManager.TakeDamage(currentHP);
+
+            // TODO ADD CAMERA FLASH HERE
+
+            if (currentHP <= 0)
+            {
+                print("Death");
+                Die();
+            }
         }
     }
 

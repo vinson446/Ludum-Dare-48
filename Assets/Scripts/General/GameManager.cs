@@ -50,5 +50,9 @@ public class GameManager : MonoBehaviour
             Player player = FindObjectOfType<Player>();
             player.Die();
         }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 }

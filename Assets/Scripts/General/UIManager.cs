@@ -116,8 +116,7 @@ public class UIManager : MonoBehaviour
     public void StartFallingDialogue()
     {
         StopAllCoroutines();
-        GameManager.instance.audioSource.clip = soundManager.bgm2;
-        GameManager.instance.audioSource.Play();
+
         StartCoroutine(StartFallingDialogueCoroutine());
     }
 
